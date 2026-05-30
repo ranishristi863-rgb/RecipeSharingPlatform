@@ -3,17 +3,17 @@
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
 
-  --bg: #f4f7fb;
+  --bg: #fffaf5;
   --surface: #ffffff;
-  --surface-hover: #f8fafc;
+  --surface-hover: #fff7f2;
 
   --text: #0f172a;
   --muted: #64748b;
 
   --border: #e2e8f0;
 
-  --primary: #2563eb;
-  --primary-dark: #1d4ed8;
+  --primary: #ff6b35;
+  --primary-dark: #e85d2d;
 
   --secondary: #334155;
 
@@ -42,7 +42,16 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background:
+    radial-gradient(circle at top right,
+      rgba(255,107,53,0.08),
+      transparent 30%),
+    linear-gradient(
+      180deg,
+      #fffaf5,
+      #f8fafc
+    );
+
   color: var(--text);
   min-height: 100vh;
   overflow-x: hidden;
@@ -120,6 +129,11 @@ header {
   font-weight: 800;
   color: var(--primary-dark);
   letter-spacing: -0.5px;
+}
+
+.navbar {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(16px);
 }
 
 /* FULL TOGGLE SWITCH */
@@ -215,8 +229,9 @@ header {
 }
 
 .card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-8px);
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.12);
 }
 
 /* HERO SECTION */
@@ -264,6 +279,12 @@ select:focus {
   box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
 }
 
+input:hover,
+textarea:hover,
+select:hover {
+  border-color: #ffb38a;
+}
+
 textarea {
   resize: vertical;
   min-height: 120px;
@@ -273,22 +294,26 @@ textarea {
 
 button {
   border: none;
-  border-radius: var(--radius-md);
+  border-radius: 14px;
 
-  padding: 12px 20px;
+  padding: 13px 22px;
 
   color: white;
 
-  background: var(--primary);
+  background: linear-gradient(
+    135deg,
+    #ff6b35,
+    #ff9f1c
+  );
 
-  font-weight: 600;
+  font-weight: 700;
 
-  transition: var(--transition);
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  background: var(--primary-dark);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
 }
 
 button.secondary {
@@ -516,4 +541,8 @@ section {
   form {
     padding: 16px;
   }
+}
+
+.feed-heading h1 {
+  letter-spacing: -2px;
 }

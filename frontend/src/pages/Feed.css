@@ -1,33 +1,71 @@
 .feed-page {
-  padding: 50px 0;
+  padding: 70px 0;
+  min-height: 100vh;
 }
 
 .feed-heading {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 }
 
 .feed-heading h1 {
-  font-size: 2.8rem;
-  margin-bottom: 12px;
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 18px;
+  background: linear-gradient(
+    135deg,
+    #ff6b35,
+    #ff9f1c
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .feed-heading p {
   color: #6b7280;
+  max-width: 650px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.7;
 }
 
 .recipe-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(340px, 1fr)
+  );
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 992px) {
+  .feed-heading h1 {
+    font-size: 3rem;
+  }
 }
 
 @media (max-width: 768px) {
+  .feed-page {
+    padding: 50px 0;
+  }
+
+  .feed-heading {
+    margin-bottom: 40px;
+  }
+
   .feed-heading h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
+  }
+
+  .feed-heading p {
+    font-size: 0.95rem;
+    padding: 0 12px;
   }
 
   .recipe-grid {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
 }
