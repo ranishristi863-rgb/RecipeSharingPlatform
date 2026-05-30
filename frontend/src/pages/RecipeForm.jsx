@@ -34,7 +34,7 @@ export default function RecipeForm({ user, editMode = false }) {
         });
 
         if (data.image) {
-          setPreview(`http://localhost:4000${data.image}`);
+          setPreview(`https://recipesharingplatform-944d.onrender.com${data.image}`);
         }
       })
       .catch(() => setError('Unable to load recipe for editing'));
