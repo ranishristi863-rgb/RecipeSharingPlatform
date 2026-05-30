@@ -71,7 +71,7 @@ export default function RecipeDetail({ user }) {
       <div className="card">
         <h2>{recipe.title}</h2>
         <p className="status-line">By {recipe.owner?.name} · {new Date(recipe.createdAt).toLocaleDateString()}</p>
-        {recipe.image && <img className="recipe-cover" src={`https://recipesharingplatform-944d.onrender.com${recipe.image}`} alt={recipe.title} />}
+        {recipe.image && <img className="recipe-detail-cover" src={`https://recipesharingplatform-944d.onrender.com${recipe.image}`} alt={recipe.title} />}
         <p>{recipe.description}</p>
         <div className="tag-list">
           {recipe.tags?.map((tag) => <span key={tag} className="tag-pill">{tag}</span>)}
