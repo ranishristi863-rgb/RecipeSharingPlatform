@@ -20,8 +20,9 @@
 .recipe-image,
 .recipe-cover {
   width: 100%;
-  height: 260px;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
+  display: block;
   transition: transform 0.5s ease;
 }
 
@@ -110,22 +111,12 @@
 }
 
 @media (max-width: 768px) {
-  .recipe-image,
-  .recipe-cover {
-    height: 220px;
-  }
-
   .recipe-content {
     padding: 18px;
   }
 }
 
 @media (max-width: 480px) {
-  .recipe-image,
-  .recipe-cover {
-    height: 200px;
-  }
-
   .recipe-title {
     font-size: 1.2rem;
   }

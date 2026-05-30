@@ -377,11 +377,9 @@ button.danger:hover {
 .recipe-card img,
 .recipe-cover {
   width: 100%;
-  height: 220px;
-
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-
-  border-radius: 16px;
+  display: block;
 }
 
 .recipe-card h3 {
@@ -508,11 +506,6 @@ section {
   form {
     padding: 22px;
   }
-
-  .recipe-card img,
-  .recipe-cover {
-    height: 200px;
-  }
 }
 
 @media (max-width: 640px) {
@@ -540,11 +533,6 @@ section {
     grid-template-columns: 1fr;
   }
 
-  .recipe-card img,
-  .recipe-cover {
-    height: 180px;
-  }
-
   .card,
   form {
     border-radius: 16px;
@@ -562,11 +550,6 @@ section {
 
   header {
     padding: 14px 16px;
-  }
-
-  .recipe-card img,
-  .recipe-cover {
-    height: 160px;
   }
 
   .card,
