@@ -70,11 +70,7 @@ export default function Feed({ user }) {
 
           <div className="hero-media">
             <div className="hero-media-card">
-              <img
-  src="/chef-pick.jpg"
-  alt="Chef's Pick"
-  className="hero-media-photo"
-/>
+              <div className="hero-media-photo" />
               <div className="hero-media-copy">
                 <span>Chef’s Pick</span>
                 <h3>Elevate your next meal</h3>
