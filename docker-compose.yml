@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  mongo:
+    image: mongo:7.0
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build: ./backend
+    ports:
+      - '4000:4000'
+    environment:
+      - PORT=4000
+      - MONGODB_URI=mongodb://mongo:27017/recipe_sharing
+      - JWT_SECRET=${JWT_SECRET:-supersecret}
+      - NODE_ENV=production
+    depends_on:
+      - mongo
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://backend:4000/api
+    ports:
+      - '5173:80'
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:
