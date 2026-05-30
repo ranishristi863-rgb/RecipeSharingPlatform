@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../api';
 import RecipeCard from '../components/RecipeCard';
+import './Feed.css';
 
 const categories = ['Breakfast', 'Vegan', 'Dessert', 'Quick Meals'];
 
@@ -36,19 +37,47 @@ export default function Feed({ user }) {
   return (
     <section className="feed-page">
       <div className="hero-section card">
-        <div className="hero-content">
-          <div className="hero-badge">
-            🍳 Community Recipe Platform
+        <div className="hero-grid">
+          <div className="hero-copy">
+            <div className="hero-badge">🍳 Community Recipe Platform</div>
+
+            <h1 className="hero-title">
+              Discover, Cook & Share Amazing Recipes
+            </h1>
+
+            <p className="hero-description">
+              Explore delicious recipes shared by food lovers around the world.
+              Search recipes, discover categories, and save your favorites.
+            </p>
+
+            <div className="hero-actions">
+              <button type="button" className="primary-pill">
+                Browse recipes
+              </button>
+              <button type="button" className="secondary-pill">
+                Share a recipe
+              </button>
+            </div>
+
+            <div className="hero-pill-list">
+              {categories.map((category) => (
+                <span key={category} className="hero-pill">
+                  #{category}
+                </span>
+              ))}
+            </div>
           </div>
 
-          <h1 className="hero-title">
-            Discover, Cook & Share Amazing Recipes
-          </h1>
-
-          <p className="hero-description">
-            Explore delicious recipes shared by food lovers around the world.
-            Search recipes, discover categories, and save your favorites.
-          </p>
+          <div className="hero-media">
+            <div className="hero-media-card">
+              <div className="hero-media-photo" />
+              <div className="hero-media-copy">
+                <span>Chef’s Pick</span>
+                <h3>Elevate your next meal</h3>
+                <p>Fresh recipes with premium plating inspiration.</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="search-filter-wrapper">

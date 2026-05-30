@@ -23,21 +23,56 @@ export default function Login({ onAuth }) {
   };
 
   return (
-    <div className="card">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input type="email" value={credentials.email} onChange={(e) => setCredentials({ ...credentials, email: e.target.value })} required />
-        </label>
-        <label>
-          Password
-          <input type="password" value={credentials.password} onChange={(e) => setCredentials({ ...credentials, password: e.target.value })} required />
-        </label>
-        {error && <p style={{ color: 'var(--danger)' }}>{error}</p>}
-        <button type="submit">Log in</button>
-      </form>
-      <p>Need an account? <button className="secondary" type="button" onClick={() => navigate('/register')}>Register</button></p>
-    </div>
+    <section className="auth-page">
+      <div className="auth-shell">
+        <div className="auth-intro">
+          <span className="auth-badge">Welcome back</span>
+          <h1>Sign in and keep cooking</h1>
+          <p>
+            Access your favorite recipes, save collections, and join a premium
+            recipe community.
+          </p>
+        </div>
+
+        <div className="auth-card card">
+          <h2>Login</h2>
+
+          <form onSubmit={handleSubmit} className="auth-form">
+            <label>
+              Email
+              <input
+                type="email"
+                value={credentials.email}
+                onChange={(e) => setCredentials({ ...credentials, email: e.target.value })}
+                required
+              />
+            </label>
+
+            <label>
+              Password
+              <input
+                type="password"
+                value={credentials.password}
+                onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
+                required
+              />
+            </label>
+
+            {error && <p className="form-error-text">{error}</p>}
+
+            <button type="submit" className="submit-btn">
+              Log in
+            </button>
+          </form>
+
+          <p className="auth-footer-text">
+            Need an account?{' '}
+            <button className="secondary ghost" type="button" onClick={() => navigate('/register')}>
+              Register
+            </button>
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }

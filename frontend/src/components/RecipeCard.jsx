@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import './RecipeCard.css';
 
 export default function RecipeCard({ recipe }) {
   return (

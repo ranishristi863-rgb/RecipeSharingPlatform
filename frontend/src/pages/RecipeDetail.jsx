@@ -67,46 +67,86 @@ export default function RecipeDetail({ user }) {
   if (!recipe) return <div className="card"><p>Loading recipe...</p></div>;
 
   return (
-    <div className="hero">
-      <div className="card">
-        <h2>{recipe.title}</h2>
-        <p className="status-line">By {recipe.owner?.name} · {new Date(recipe.createdAt).toLocaleDateString()}</p>
-        {recipe.image && <img className="recipe-detail-cover" src={`https://recipesharingplatform-944d.onrender.com${recipe.image}`} alt={recipe.title} />}
-        <p>{recipe.description}</p>
-        <div className="tag-list">
-          {recipe.tags?.map((tag) => <span key={tag} className="tag-pill">{tag}</span>)}
+    <section className="recipe-detail-page">
+      <div className="detail-hero card">
+        {recipe.image && (
+          <img
+            className="recipe-detail-cover"
+            src={`https://recipesharingplatform-944d.onrender.com${recipe.image}`}
+            alt={recipe.title}
+          />
+        )}
+
+        <div className="detail-header">
+          <p className="detail-meta">
+            By {recipe.owner?.name} · {new Date(recipe.createdAt).toLocaleDateString()}
+          </p>
+
+          <h1>{recipe.title}</h1>
+
+          <p className="detail-description">{recipe.description}</p>
+
+          <div className="tag-list detail-tag-list">
+            {recipe.tags?.map((tag) => (
+              <span key={tag} className="tag-pill">
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <div className="detail-actions">
+            <button onClick={handleLike}>
+              {likeState.liked ? 'Unlike' : 'Like'} ({likeState.likes})
+            </button>
+            {user && String(recipe.owner?._id) === user.id && (
+              <>
+                <button className="secondary" onClick={() => navigate(`/recipes/${id}/edit`)}>
+                  Edit
+                </button>
+                <button className="danger" onClick={handleDelete}>
+                  Delete
+                </button>
+              </>
+            )}
+          </div>
         </div>
-        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '16px' }}>
-          <button onClick={handleLike}>{likeState.liked ? 'Unlike' : 'Like'} ({likeState.likes})</button>
-          {user && String(recipe.owner?._id) === user.id && (
-            <>
-              <button className="secondary" onClick={() => navigate(`/recipes/${id}/edit`)}>Edit</button>
-              <button className="danger" onClick={handleDelete}>Delete</button>
-            </>
-          )}
+      </div>
+
+      <div className="detail-grid">
+        <div className="card detail-panel">
+          <h3>Ingredients</h3>
+          <ul>
+            {recipe.ingredients.map((ingredient) => (
+              <li key={ingredient}>{ingredient}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="card detail-panel">
+          <h3>Steps</h3>
+          <ol>
+            {recipe.steps.map((step, index) => (
+              <li key={`${step}-${index}`}>{step}</li>
+            ))}
+          </ol>
         </div>
       </div>
 
-      <div className="card">
-        <h3>Ingredients</h3>
-        <ul>{recipe.ingredients.map((ingredient) => <li key={ingredient}>{ingredient}</li>)}</ul>
-      </div>
-
-      <div className="card">
-        <h3>Steps</h3>
-        <ol>{recipe.steps.map((step, index) => <li key={`${step}-${index}`}>{step}</li>)}</ol>
-      </div>
-
-      <div className="card">
+      <div className="card detail-panel">
         <h3>Add a comment</h3>
-        <form onSubmit={handleComment}>
-          <textarea rows="3" value={commentText} onChange={(e) => setCommentText(e.target.value)} required />
+        <form onSubmit={handleComment} className="detail-comment-form">
+          <textarea
+            rows="3"
+            value={commentText}
+            onChange={(e) => setCommentText(e.target.value)}
+            required
+          />
           <button type="submit">Post comment</button>
         </form>
-        {error && <p style={{ color: 'var(--danger)' }}>{error}</p>}
+        {error && <p className="form-error-text">{error}</p>}
       </div>
 
       <CommentList comments={comments} />
-    </div>
+    </section>
   );
 }
