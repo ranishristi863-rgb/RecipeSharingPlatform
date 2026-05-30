@@ -127,13 +127,37 @@ header {
 
   font-size: 1.4rem;
   font-weight: 800;
-  color: var(--primary-dark);
+  background: linear-gradient(
+    135deg,
+    #ff6b35,
+    #ff9f1c
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   letter-spacing: -0.5px;
 }
 
 .navbar {
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(16px);
+  position: sticky;
+  top: 16px;
+
+  width: min(1200px, calc(100% - 32px));
+  margin: 16px auto;
+
+  z-index: 1000;
+
+  background: rgba(255, 255, 255, 0.82);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255,255,255,0.4);
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,0.08);
 }
 
 /* FULL TOGGLE SWITCH */
@@ -199,17 +223,25 @@ header {
 .nav-links button {
   border: none;
   background: transparent;
+
   color: var(--muted);
+
   font-weight: 600;
-  padding: 10px 14px;
-  border-radius: 10px;
-  transition: var(--transition);
+
+  padding: 10px 16px;
+
+  border-radius: 12px;
+
+  transition: all 0.25s ease;
 }
 
 .nav-links a:hover,
 .nav-links button:hover {
-  background: #eff6ff;
-  color: var(--primary-dark);
+  background: rgba(255,107,53,0.12);
+
+  color: #ff6b35;
+
+  transform: translateY(-2px);
 }
 
 /* CARDS */
@@ -545,4 +577,20 @@ section {
 
 .feed-heading h1 {
   letter-spacing: -2px;
+
+.nav-register {
+  background: linear-gradient(
+    135deg,
+    #ff6b35,
+    #ff9f1c
+  ) !important;
+
+  color: white !important;
+
+  border-radius: 14px;
+}
+
+.nav-register:hover {
+  transform: translateY(-2px);
+}
 }
