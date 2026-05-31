@@ -3,6 +3,8 @@ const multer = require('multer');
 const path = require('path');
 const Recipe = require('../models/Recipe');
 const { authenticate } = require('../middleware/auth');
+const cloudinary = require('../cloudinary');
+const fs = require('fs');
 
 const router = express.Router();
 
@@ -51,6 +53,17 @@ router.get('/:id', async (req, res) => {
 router.post('/', authenticate, upload.single('image'), async (req, res) => {
   try {
     const { title, description, ingredients, steps, tags } = req.body;
+    let imageUrl;
+
+if (req.file) {
+  const result = await cloudinary.uploader.upload(req.file.path, {
+    folder: 'recipes'
+  });
+
+  imageUrl = result.secure_url;
+
+  fs.unlinkSync(req.file.path);
+}
     const recipe = new Recipe({
       owner: req.user._id,
       title,
@@ -58,7 +71,7 @@ router.post('/', authenticate, upload.single('image'), async (req, res) => {
       ingredients: typeof ingredients === 'string' ? ingredients.split(',').map((i) => i.trim()).filter(Boolean) : ingredients,
       steps: typeof steps === 'string' ? steps.split('\n').map((s) => s.trim()).filter(Boolean) : steps,
       tags: typeof tags === 'string' ? tags.split(',').map((t) => t.trim()).filter(Boolean) : tags,
-      image: req.file ? `/uploads/${req.file.filename}` : undefined
+      image: imageUrl
     });
 
     await recipe.save();
@@ -80,7 +93,15 @@ router.put('/:id', authenticate, upload.single('image'), async (req, res) => {
     recipe.ingredients = typeof ingredients === 'string' ? ingredients.split(',').map((i) => i.trim()).filter(Boolean) : recipe.ingredients;
     recipe.steps = typeof steps === 'string' ? steps.split('\n').map((s) => s.trim()).filter(Boolean) : recipe.steps;
     recipe.tags = typeof tags === 'string' ? tags.split(',').map((t) => t.trim()).filter(Boolean) : recipe.tags;
-    if (req.file) recipe.image = `/uploads/${req.file.filename}`;
+    if (req.file) {
+  const result = await cloudinary.uploader.upload(req.file.path, {
+    folder: 'recipes'
+  });
+
+  recipe.image = result.secure_url;
+
+  fs.unlinkSync(req.file.path);
+}
 
     await recipe.save();
     res.json(recipe);
