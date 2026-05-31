@@ -7,7 +7,7 @@ export default function RecipeCard({ recipe }) {
       <div className="recipe-image-wrapper">
         {recipe.image ? (
           <img
-            src={`https://recipesharingplatform-944d.onrender.com${recipe.image}`}
+           src={recipe.image}
             alt={recipe.title}
             className="recipe-cover"
           />

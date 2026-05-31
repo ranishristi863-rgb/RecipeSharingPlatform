@@ -72,7 +72,7 @@ export default function RecipeDetail({ user }) {
         {recipe.image && (
           <img
             className="recipe-detail-cover"
-            src={`https://recipesharingplatform-944d.onrender.com${recipe.image}`}
+            src={recipe.image}
             alt={recipe.title}
           />
         )}
